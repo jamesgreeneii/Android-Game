@@ -1,0 +1,180 @@
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+
+public class MainActivity extends ActionBarActivity {
+
+    private ImageView imgView;
+    private ImageButton btnCat, btnMouse, btnElephant;
+    private TextView result_tv, count_tv, win_tv, lose_tv, tie_tv;
+    int tie = 0;
+    int lose = 0;
+    int win = 0;
+    int count =0;
+    MyOnClickListener akListen = new MyOnClickListener();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //initialize buttons
+        btnCat = (ImageButton) findViewById(R.id.btnCat);
+        btnMouse = (ImageButton) findViewById(R.id.btnMouse);
+        btnElephant = (ImageButton) findViewById(R.id.btnElephant);
+        //intialize imgView
+        imgView = (ImageView) findViewById(R.id.viewCmp);
+        //intialize result and count TextView
+        result_tv = (TextView) findViewById(R.id.textResult);
+        count_tv = (TextView) findViewById(R.id.textCount);
+        win_tv = (TextView) findViewById(R.id.textWin);
+        lose_tv = (TextView) findViewById(R.id.textLose);
+        tie_tv = (TextView) findViewById(R.id.textTie);
+
+        btnCat.setOnClickListener(akListen);
+        btnMouse.setOnClickListener(akListen);
+        btnElephant.setOnClickListener(akListen);
+    }
+
+    private class MyOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+// TODO Auto-generated method stub
+            int rand = (int) (Math.random() * 3 + 1); // get a random number form 1 to 3 count++;//
+            switch (rand) {
+/**
+ * rand = 1 means computer is Mouse,
+ * 2 represents Cat,
+ * 3 represents Elephant
+ */
+                case 1:
+                    imgView.setImageResource(R.drawable.mouse);
+//nature choose Mouse
+                    switch (v.getId()) {
+                        case R.id.btnCat: //player choose Cat against nature
+                            result_tv.setText("Result: "
+                                    + "Human Won!");
+                            win=win+1;
+                            count_tv.setText("Count: " + count);
+                            win_tv.setText("Win: " + win);
+                            lose_tv.setText("Lose: " + lose);
+                            tie_tv.setText("Tie: " + tie);
+                            break;
+                        case R.id.btnMouse: //player choose mouse against nature
+                            result_tv.setText("Result: "
+                                    + "Peace in animal kingdom!");
+                            tie=tie+1;
+                            count_tv.setText("Count: " + count);
+                            win_tv.setText("Win: " + win);
+                            lose_tv.setText("Lose: " + lose);
+                            tie_tv.setText("Tie: " + tie);
+                            break;
+                        case R.id.btnElephant: //player choose elephant against nature
+                            result_tv.setText("Result: "
+                                    + "Nature won!");
+                            lose=lose+1;
+                            count_tv.setText("Count: " + count);
+                            win_tv.setText("Win: " + win);
+                            lose_tv.setText("Lose: " + lose);
+                            tie_tv.setText("Tie: " + tie);
+                            break;
+                    }
+                    break;
+                case 2:
+                    imgView.setImageResource(R.drawable.cat);
+//nature choose cat
+                    switch (v.getId()) {
+                        case R.id.btnCat:
+                            result_tv.setText("Result: "
+                                    + "Peace in animal kingdom!");
+                            tie=tie+1;
+                            count_tv.setText("Count: " + count);
+                            win_tv.setText("Win: " + win);
+                            lose_tv.setText("Lose: " + lose);
+                            tie_tv.setText("Tie: " + tie);
+                            break;
+                        case R.id.btnMouse:
+                            result_tv.setText("Result: "
+                                    + "Nature won!");
+                            lose=lose+1;
+                            count_tv.setText("Count: " + count);
+                            win_tv.setText("Win: " + win);
+                            lose_tv.setText("Lose: " + lose);
+                            tie_tv.setText("Tie: " + tie);
+                            break;
+                        case R.id.btnElephant:
+                            result_tv.setText("Result: "
+                                    + "Human won!");
+                            win=win+1;
+                            count_tv.setText("Count: " + count);
+                            win_tv.setText("Win: " + win);
+                            lose_tv.setText("Lose: " + lose);
+                            tie_tv.setText("Tie: " + tie);
+                            break;
+                    }
+                    break;
+                case 3:
+                    imgView.setImageResource(R.drawable.elephant);
+//nature choose Elephant
+                    switch (v.getId()) {
+                        case R.id.btnCat:
+                            result_tv.setText("Result: "
+                                    + "Nature won!");
+                            lose=lose+1;
+                            count_tv.setText("Count: " + count);
+                            win_tv.setText("Win: " + win);
+                            lose_tv.setText("Lose: " + lose);
+                            tie_tv.setText("Tie: " + tie);
+                            break;
+                        case R.id.btnMouse:
+                            result_tv.setText("Result: "
+                                    + "Human won!");
+                            win=win+1;
+                            count_tv.setText("Count: " + count);
+                            win_tv.setText("Win: " + win);
+                            lose_tv.setText("Lose: " + lose);
+                            tie_tv.setText("Tie: " + tie);
+                            break;
+                        case R.id.btnElephant:
+                            result_tv.setText("Result: "
+                                    + "Peace in animal kingdon!");
+                            tie=tie+1;
+                            count_tv.setText("Count: " + count);
+                            win_tv.setText("Win: " + win);
+                            lose_tv.setText("Lose: " + lose);
+                            tie_tv.setText("Tie: " + tie);
+                            break;
+                    }
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
